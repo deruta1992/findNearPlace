@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <title>近隣施設検索の試験PG</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+    <div id="container">
+        <!--上段-->
+        <div id="whole_table">
+            <div id="left_column" class="table_column">
+                <form action="#" method="post" name="searchNearPlace">
+                    <span>
+                        <label>緯度<input type="float" name="ido" class="form-control" placeholder="緯度"></label>
+                    </span>
+                    <span>
+                        <label>経度<input type="float" name="keido" class="form-control" placeholder="経度"></label>
+                    </span>
+                    <button class="btn btn-primary" type="button" onClick="research()">周辺施設を検索する</button>
+                </form>
+                <p>このシステムはGoogle Place APIに基づいて作成されました。<br/>
+                APIの仕様については<a href="https://developers.google.com/places/web-service/supported_types" target="_blank">Google API Document</a>を参照してください。</p>
+                <p>なお、このシステムでは下記施設の検索を有効としています。</p>
+                <div class="shisetsu_category">
+                    'accounting','airport','amusement_park','aquarium','art_gallery','atm','bakery','bank','bar','beauty_salon','bicycle_store','book_store','bowling_alley','bus_station','cafe','campground','car_dealer','car_rental','car_repair','car_wash','casino','cemetery','church','city_hall',,'courthouse','department_store','doctor','embassy','fire_station',' florist','funeral_home','gym','hindu_temple','hospital','library','local_government_office','locksmith','lodging',
+    'mosque','movie_theater','moving_company','museum','park','plumber','police','post_office','rv_park'
+    ,'school','shopping_mall','spa','stadium','subway_station','supermarket','synagogue','train_station','transit_station','veterinary_care','zoo'
+                </div>
+            </div>
+            <div id="right_column" class="table_column">
+                <div id="map">
+                    <p>住所を入力して検索すると、ここに地図が表示されます。</p>
+                </div>
+            </div>
+        </div>
+        <!--下段-->
+        <div class="result_undertable">
+        <table id="result" class="table">
+            <thead>
+                <th>category</th>
+                <th>place_name</th>
+                <th>住所</th>
+                <th>rating</th>
+                <!--th>pricelevel</th-->
+                <!--th>位置情報</th-->
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        </div>
+    </div>
+    </body>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4fkk1r1MBi4Z18RvJ4uOcjy14H4Ax85M&libraries=places"></script>
+    <script type="text/javascript" src="./mapNearest.js"></script>
+</html>

@@ -1,0 +1,61 @@
+#container{
+    height: 100%;
+    position: relative;
+}
+#whole_table{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    height: 500px
+}
+.table_column{
+    float: left;
+    display: block;
+}
+.result_undertable{
+    height: calc(100% - 500px);
+    overflow-y: scroll;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+#left_column{
+    width: 30%;
+    box-sizing: border-box;
+    padding-right: 10px;
+}
+#right_column{
+    width: 70%;
+}
+/*#table_column{
+    display: table-column;
+}*/
+#map{
+    width: 100%;
+    height: 500px;
+    background-color: rgba(122, 122, 122, 1);
+    padding: auto 10px;
+}
+#map > p{
+    display: block;
+    margin: auto;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+}
+
+.category_cell{
+    max-width: 160px;
+    word-wrap: break-word;
+}
+.latlon_cell{
+    word-wrap: break-word;
+}
+.shisetsu_category{
+    border: solid 0.1px #000;
+    padding: 10px;
+    word-wrap: break-word;
+    height: 150px;
+    overflow-y: scroll;
+}
