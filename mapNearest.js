@@ -10,59 +10,71 @@ function initialize(ido, keido) {
       center: pyrmont,
       zoom: 18
   });
-  
-  var request = {
-    location: pyrmont,
-    radius: '500',
-    type: ['accounting','airport','amusement_park','aquarium','art_gallery','atm','bakery','bank','bar','beauty_salon','bicycle_store','book_store','bowling_alley','bus_station','cafe','campground','car_dealer','car_rental','car_repair','car_wash','casino','cemetery','church','city_hall',,'courthouse','department_store','doctor','embassy','fire_station',' florist','funeral_home','gym','hindu_temple','hospital','library','local_government_office','locksmith','lodging',
-    'mosque','movie_theater','moving_company','museum','park','plumber','police','post_office','rv_park'
-    ,'school','shopping_mall','spa','stadium','subway_station','supermarket','synagogue','train_station','transit_station','veterinary_care','zoo']
-  };
+
+  //http://express.heartrails.com/api.html
+  let url_eki = "http://express.heartrails.com/api/json?method=getStations&x=" + keido + "&y=" + ido
+  /*Station APIのレスポンスについては未定義
+  $.ajax({
+    url: url_eki,
+    dataType: 'json',
+    method: "get"
+  }).then(function(res){
+    console.log(res)
+    let url = "https://map.yahooapis.jp/placeinfo/V1/get?lat=" + ido + "&lon=" + keido + "&appid=dj00aiZpPUtaeWtUVW15Z2FmViZzPWNvbnN1bWVyc2VjcmV0Jng9MGU-&output=json";
+    console.log(url)
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      method: "get"
+    }).then(function(res){
+      console.log(res)
+    }, function(err){
+      console.log(err)
+    })
+  }, function(err){
+    console.log(err)
+  })
 
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, callback);
+  */
 }
 
 function callback(results, status) {
-  if (status == google.maps.places.PlacesServiceStatus.OK) {
+  //if (status == google.maps.places.PlacesServiceStatus.OK) {
     console.log(results);
     results.forEach(function(element, index){
       let tr_con = document.createElement('tr');
-      /*documentNode*/
-      let category = element.types;
-      category = category.join(',');
+      //施設カテゴリ
       let td_con1 = document.createElement('td');
       td_con1.classList.add('category_cell');
-      td_con1.appendChild(document.createTextNode(category));
-
+      td_con1.appendChild(document.createTextNode(element.Category));
+      //施設名
       let td_con2 = document.createElement('td');
-      td_con2.appendChild(document.createTextNode(element.name));
+      td_con2.appendChild(document.createTextNode(element.Name));
+      /*施設の所在地
       let td_con3 = document.createElement('td');
-      td_con3.appendChild(document.createTextNode(element.geometry.location.lat() + ',' + element.geometry.location.lng()));
-      /*let td_con4 = document.createElement('td');
-      td_con4.appendChild(document.createTextNode());*/
+      td_con3.appendChild(document.createTextNode(element.geometry.location.lat() + ',' + element.geometry.location.lng()));*/
+      /*評価
       let td_con5 = document.createElement('td');
-      td_con5.appendChild(document.createTextNode(element.rating));
-      /*let td_con6 = document.createElement('td');
-      td_con6.appendChild(document.createTextNode(element.plus_code.price_level));*/
+      td_con5.appendChild(document.createTextNode(element.rating));*/
+      //住所
       let td_con7 = document.createElement('td');
-      td_con7.appendChild(document.createTextNode(element.vicinity));
+      td_con7.appendChild(document.createTextNode(element.Where));
       //
       tr_con.appendChild(td_con1);
       tr_con.appendChild(td_con2);
       tr_con.appendChild(td_con7);
-      //tr_con.appendChild(td_con4);
-      tr_con.appendChild(td_con5);
-      //tr_con.appendChild(td_con6);
-      //tr_con.appendChild(td_con3);
+      //tr_con.appendChild(td_con5);
       document.querySelector('#result > tbody').appendChild(tr_con); 
 
-      var marker = new google.maps.Marker({
+      /*var marker = new google.maps.Marker({
         position: element.geometry.location,
         map: map,
       });
+      */
       infoWindow = new google.maps.InfoWindow({ // 吹き出しの追加
-          content: '<div class="fukidasi">' + element.name + '</div>'
+          content: '<div class="fukidasi">' + element.Name + '</div>'
       });
       //marker.addListener('click', function() {
         infoWindow.open(map, marker); // 吹き出しの表示
@@ -75,7 +87,7 @@ function callback(results, status) {
       icon: './pin01.png'
     });
     
-  }
+  //}
 }
 
 window.onload = function(){
@@ -90,9 +102,11 @@ window.onload = function(){
     datas[params[0]] = params[1];
   })
   console.log(datas)
-  document.getElementsByName('ido')[0].value = datas.ido
-  document.getElementsByName('keido')[0].value = datas.keido
-  initialize(datas.ido, datas.keido)
+  if(datas.ido){ ido = datas.ido } else { ido = ido = 35.5425 }
+  if(datas.keido){ keido = datas.keido } else { keido = keido = 139.3710 }
+  document.getElementsByName('ido')[0].value = ido
+  document.getElementsByName('keido')[0].value = keido
+  initialize(ido, keido)
 }
 
 function research(){
