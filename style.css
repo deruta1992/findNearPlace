@@ -52,7 +52,7 @@
 .latlon_cell{
     word-wrap: break-word;
 }
-.shisetsu_category{
+#shisetsu_category{
     border: solid 0.1px #000;
     padding: 10px;
     word-wrap: break-word;

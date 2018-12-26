@@ -22,10 +22,139 @@
                 <p>このシステムはGoogle Place APIに基づいて作成されました。<br/>
                 APIの仕様については<a href="https://developers.google.com/places/web-service/supported_types" target="_blank">Google API Document</a>を参照してください。</p>
                 <p>なお、このシステムでは下記施設の検索を有効としています。</p>
-                <div class="shisetsu_category">
-                    'accounting','airport','amusement_park','aquarium','art_gallery','atm','bakery','bank','bar','beauty_salon','bicycle_store','book_store','bowling_alley','bus_station','cafe','campground','car_dealer','car_rental','car_repair','car_wash','casino','cemetery','church','city_hall',,'courthouse','department_store','doctor','embassy','fire_station',' florist','funeral_home','gym','hindu_temple','hospital','library','local_government_office','locksmith','lodging',
-    'mosque','movie_theater','moving_company','museum','park','plumber','police','post_office','rv_park'
-    ,'school','shopping_mall','spa','stadium','subway_station','supermarket','synagogue','train_station','transit_station','veterinary_care','zoo'
+                <div id="shisetsu_category">
+                    
+                    <label for="airport">空港</label>
+                    <input type="checkbox" name="airport" checked>
+                    <label for="aquarium">動物園</label>
+                    <input type="checkbox" name="zoo" checked>
+                    <label for="amusement_park">アミューズメントパーク</label>
+                    <input type="checkbox" name="amusement_park" checked>
+                    <label for="aquarium">水族館</label>
+                    <input type="checkbox" name="aquarium" checked>
+                    <label for="aquarium">美術館</label>
+                    <input type="checkbox" name="art_gallery" checked>
+                    
+                    <label for="aquarium">銀行</label>
+                    <input type="checkbox" name="bank" checked>
+                    
+                    <label for="aquarium">ボウリング場</label>
+                    <input type="checkbox" name="bowling_alley" checked>
+                    <label for="aquarium">バス停</label>
+                    <input type="checkbox" name="bus_station" checked>
+                    
+                    <label for="aquarium">キャンプ場</label>
+                    <input type="checkbox" name="campground" checked>
+                    
+                    <label for="aquarium">カジノ</label>
+                    <input type="checkbox" name="casino" checked>
+                    <label for="aquarium">墓地</label>
+                    <input type="checkbox" name="cemetery" checked>
+                    <label for="aquarium">教会</label>
+                    <input type="checkbox" name="church" checked>
+                    <label for="aquarium">市役所</label>
+                    <input type="checkbox" name="city_hall" checked>
+                    <label for="aquarium">裁判所</label>
+                    <input type="checkbox" name="courthouse" checked>
+                    <label for="aquarium">デパート</label>
+                    <input type="checkbox" name="department_store" checked>
+                    
+                    <label for="aquarium">大使館</label>
+                    <input type="checkbox" name="embassy" checked>
+                    <label for="aquarium">消防署</label>
+                    <input type="checkbox" name="fire_station" checked>
+                    <label for="aquarium">花屋</label>
+                    <input type="checkbox" name="florist" checked>
+                    
+                    
+                    <label for="aquarium">仏教寺院</label>
+                    <input type="checkbox" name="hindu_temple" checked>
+                    <label for="aquarium">病院</label>
+                    <input type="checkbox" name="hospital" checked>
+                    <label for="aquarium">図書館</label>
+                    <input type="checkbox" name="library" checked>
+                    <label for="aquarium">市区町村・都道府県の官公庁施設</label>
+                    <input type="checkbox" name="local_government_office" checked>
+                    
+                    <label for="aquarium">映画館</label>
+                    <input type="checkbox" name="movie_theater" checked>
+                    
+                    <label for="aquarium">博物館</label>
+                    <input type="checkbox" name="museum" checked>
+                    <label for="aquarium">公園</label>
+                    <input type="checkbox" name="park" checked>
+                    
+                    <label for="aquarium">警察</label>
+                    <input type="checkbox" name="police" checked>
+                    <label for="aquarium">郵便局</label>
+                    <input type="checkbox" name="post_office" checked>
+                    <label for="aquarium">記念公園</label>
+                    <input type="checkbox" name="rv_park" checked>
+                    <label for="aquarium">学校</label>
+                    <input type="checkbox" name="school" checked>
+                    <label for="aquarium">ショッピングモール</label>
+                    <input type="checkbox" name="shopping_mall" checked>
+                    
+                    <label for="aquarium">スタジアム</label>
+                    <input type="checkbox" name="stadium" checked>
+                    <label for="aquarium">地下鉄駅</label>
+                    <input type="checkbox" name="subway_station" checked>
+                    
+                    <label for="aquarium">ユダヤ教会堂(シナゴーグ)</label>
+                    <input type="checkbox" name="synagogue" checked>
+                    <label for="aquarium">電車の駅</label>
+                    <input type="checkbox" name="train_station" checked>
+                    <label for="aquarium">乗換駅</label>
+                    <input type="checkbox" name="transit_station" checked>
+                    
+                    <!--デフォルトではオンにしないもの-->
+                    <label for="accounting">会計事務所</label>
+                    <input type="checkbox" name="accounting">
+                    <label for="aquarium">ATM</label>
+                    <input type="checkbox" name="atm">
+                    <label for="aquarium">パン屋</label>
+                    <input type="checkbox" name="bakery">
+                    <label for="aquarium">バー</label>
+                    <input type="checkbox" name="bar">
+                    <label for="aquarium">ビューティサロン</label>
+                    <input type="checkbox" name="beauty_salon">
+                    <label for="aquarium">自転車屋</label>
+                    <input type="checkbox" name="bicycle_store">
+                    <label for="aquarium">本屋</label>
+                    <input type="checkbox" name="book_store">
+                    <label for="aquarium">カフェ</label>
+                    <input type="checkbox" name="cafe">
+                    <label for="aquarium">カーディーラー</label>
+                    <input type="checkbox" name="car_dealer">
+                    <label for="aquarium">レンタカー</label>
+                    <input type="checkbox" name="car_rental">
+                    <label for="aquarium">車修理・板金</label>
+                    <input type="checkbox" name="car_repair">
+                    <label for="aquarium">洗車場</label>
+                    <input type="checkbox" name="car_wash">
+                    <label for="aquarium">病院・医者</label>
+                    <input type="checkbox" name="doctor">
+                    <label for="aquarium">葬式屋</label>
+                    <input type="checkbox" name="funeral_home">
+                    <label for="aquarium">ジム</label>
+                    <input type="checkbox" name="gym">
+                    <label for="aquarium">錠前屋</label>
+                    <input type="checkbox" name="locksmith">
+                    <label for="aquarium">宿泊施設</label>
+                    <input type="checkbox" name="lodging">
+                    <label for="aquarium">モスク</label>
+                    <input type="checkbox" name="mosque">
+                    <label for="aquarium">映画制作会社</label>
+                    <input type="checkbox" name="moving_company">
+                    <label for="aquarium">配管工</label>
+                    <input type="checkbox" name="plumber">
+                    <label for="aquarium">温浴施設</label>
+                    <input type="checkbox" name="spa">
+                    <label for="aquarium">スーパー</label>
+                    <input type="checkbox" name="supermarket">
+                    <label for="aquarium">獣医</label>
+                    <input type="checkbox" name="veterinary_care">
+                    
                 </div>
             </div>
             <div id="right_column" class="table_column">
@@ -51,6 +180,7 @@
         </div>
     </div>
     </body>
+    <script type="text/javascript" src="./jquery3.3.1min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4fkk1r1MBi4Z18RvJ4uOcjy14H4Ax85M&libraries=places"></script>
     <script type="text/javascript" src="./mapNearest.js"></script>
 </html>

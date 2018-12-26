@@ -10,17 +10,36 @@ function initialize(ido, keido) {
       center: pyrmont,
       zoom: 18
   });
-  
-  var request = {
-    location: pyrmont,
-    radius: '500',
-    type: ['accounting','airport','amusement_park','aquarium','art_gallery','atm','bakery','bank','bar','beauty_salon','bicycle_store','book_store','bowling_alley','bus_station','cafe','campground','car_dealer','car_rental','car_repair','car_wash','casino','cemetery','church','city_hall',,'courthouse','department_store','doctor','embassy','fire_station',' florist','funeral_home','gym','hindu_temple','hospital','library','local_government_office','locksmith','lodging',
-    'mosque','movie_theater','moving_company','museum','park','plumber','police','post_office','rv_park'
-    ,'school','shopping_mall','spa','stadium','subway_station','supermarket','synagogue','train_station','transit_station','veterinary_care','zoo']
-  };
+  /*Station検索API
+  let url_eki = "http://express.heartrails.com/api/json?method=getStations&x=" + keido + "&y=" + ido
+  $.ajax({
+    url: url_eki,
+    method: "get"
+  }).then(function(result){
+    console.log(result)
+  }, function(error){
+    console.log(error)
+  })*/
+  //Google API
+  let types = new Array();
+  let typeNode = document.querySelectorAll('#shisetsu_category > input');
+    for(let i = 0; i < typeNode.length; i++){
+      console.log(typeNode[i].value)
+      if(typeNode[i].checked){
+        types.push(typeNode[i].name)
+      }
+      if(i + 1 == typeNode.length){
+        var request = {
+          location: pyrmont,
+          radius: '500',
+          type: types
+        };
+        console.log(request)
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, callback);
+      }
+    }
 
-  service = new google.maps.places.PlacesService(map);
-  service.nearbySearch(request, callback);
 }
 
 function callback(results, status) {
@@ -39,8 +58,7 @@ function callback(results, status) {
       td_con2.appendChild(document.createTextNode(element.name));
       let td_con3 = document.createElement('td');
       td_con3.appendChild(document.createTextNode(element.geometry.location.lat() + ',' + element.geometry.location.lng()));
-      /*let td_con4 = document.createElement('td');
-      td_con4.appendChild(document.createTextNode());*/
+      
       let td_con5 = document.createElement('td');
       td_con5.appendChild(document.createTextNode(element.rating));
       /*let td_con6 = document.createElement('td');
@@ -55,7 +73,20 @@ function callback(results, status) {
       tr_con.appendChild(td_con5);
       //tr_con.appendChild(td_con6);
       //tr_con.appendChild(td_con3);
+      
+      //距離を表示するAPI
+      //tr_con.addEventListener('loadend', function(){
+        $.ajax({
+          url: "https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:" + element.id + "&destinations=" + element.geometry.location.lat() + ',' + element.geometry.location.lng() + "&key=AIzaSyC4fkk1r1MBi4Z18RvJ4uOcjy14H4Ax85M",
+          method: 'get'
+        }).then(function(res){
+          console.log(res);
+        }, function(err){
+          console.log(err);
+        })
+      //})
       document.querySelector('#result > tbody').appendChild(tr_con); 
+      
 
       var marker = new google.maps.Marker({
         position: element.geometry.location,
